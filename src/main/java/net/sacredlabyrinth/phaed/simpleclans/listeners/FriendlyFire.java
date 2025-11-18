@@ -60,7 +60,7 @@ public class FriendlyFire extends SCListener {
             return;
         }
 
-        if (vcp.isFriendlyFire() || victimClan.isFriendlyFire() || plugin.getSettingsManager().is(GLOBAL_FRIENDLY_FIRE)) {
+        if (victimClan.isFriendlyFire() || plugin.getSettingsManager().is(GLOBAL_FRIENDLY_FIRE)) {
             return;
         }
 

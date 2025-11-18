@@ -201,17 +201,14 @@ public class ClanDetailsFrame extends SCFrame {
 	}
 
 	private void addFf() {
-		String personalFf = cp.isFriendlyFire() ? lang("allowed",getViewer()) : lang("auto",getViewer());
 		String clanFf = clan.isFriendlyFire() ? lang("allowed", getViewer()) : lang("blocked", getViewer());
 		SCComponent ff = new SCComponentImpl(lang("gui.clandetails.ff.title", getViewer()),
-				Arrays.asList(lang("gui.clandetails.ff.personal.lore", getViewer(), personalFf),
-						lang("gui.clandetails.ff.clan.lore", getViewer(), clanFf),
-						lang("gui.clandetails.ff.personal.toggle.lore", getViewer()),
+				Arrays.asList(lang("gui.clandetails.ff.clan.lore", getViewer(), clanFf),
 						lang("gui.clandetails.ff.clan.toggle.lore", getViewer())),
 				XMaterial.GOLDEN_SWORD, 32);
 
-		ff.setListener(ClickType.LEFT, this::togglePersonalFf);
-		ff.setPermission(ClickType.LEFT, "simpleclans.member.ff");
+		ff.setListener(ClickType.LEFT, this::toggleClanFf);
+		ff.setPermission(ClickType.LEFT, RankPermission.FRIENDLYFIRE);
 		ff.setListener(ClickType.RIGHT, this::toggleClanFf);
 		ff.setPermission(ClickType.RIGHT, RankPermission.FRIENDLYFIRE);
 		add(ff);
@@ -225,16 +222,6 @@ public class ClanDetailsFrame extends SCFrame {
 			arg = "allow";
 		}
 		InventoryController.runSubcommand(getViewer(), "clanff", true, arg);
-	}
-
-	private void togglePersonalFf() {
-		String arg;
-		if (cp.isFriendlyFire()) {
-			arg = "auto";
-		} else {
-			arg = "allow";
-		}
-		InventoryController.runSubcommand(getViewer(), "ff", true, arg);
 	}
 
 	private void addRegroup() {

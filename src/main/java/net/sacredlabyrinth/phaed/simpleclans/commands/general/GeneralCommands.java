@@ -155,24 +155,6 @@ public class GeneralCommands extends BaseCommand {
         r.send();
     }
 
-    @Subcommand("%ff %allow")
-    @CommandPermission("simpleclans.member.ff")
-    @Description("{@@command.description.ff.allow}")
-    public void allowPersonalFf(Player player, ClanPlayer cp) {
-        cp.setFriendlyFire(true);
-        storage.updateClanPlayer(cp);
-        ChatBlock.sendMessage(player, AQUA + lang("personal.friendly.fire.is.set.to.allowed", player));
-    }
-
-    @Subcommand("%ff %auto")
-    @CommandPermission("simpleclans.member.ff")
-    @Description("{@@command.description.ff.auto}")
-    public void autoPersonalFf(Player player, ClanPlayer cp) {
-        cp.setFriendlyFire(false);
-        storage.updateClanPlayer(cp);
-        ChatBlock.sendMessage(player, AQUA + lang("friendy.fire.is.now.managed.by.your.clan", player));
-    }
-
     @Subcommand("%resetkdr %confirm")
     @CommandPermission("simpleclans.vip.resetkdr")
     @Description("{@@command.description.resetkdr}")

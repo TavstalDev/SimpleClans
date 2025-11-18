@@ -219,6 +219,25 @@ public class ClanCommands extends BaseCommand {
         storage.updateClan(clan);
     }
 
+    @Subcommand("%ff %allow")
+    @CommandPermission("simpleclans.leader.ff")
+    @Conditions("rank:name=FRIENDLYFIRE")
+    @Description("{@@command.description.clanff.allow}")
+    public void allowClanFfv2(Player player, Clan clan) {
+        clan.addBb(player.getName(), lang("clan.wide.friendly.fire.is.allowed"));
+        clan.setFriendlyFire(true);
+        storage.updateClan(clan);
+    }
+
+    @Subcommand("%ff %block")
+    @CommandPermission("simpleclans.leader.ff")
+    @Description("{@@command.description.clanff.block}")
+    public void blockClanFfv2(Player player, Clan clan) {
+        clan.addBb(player.getName(), lang("clan.wide.friendly.fire.blocked"));
+        clan.setFriendlyFire(false);
+        storage.updateClan(clan);
+    }
+
     @Subcommand("%description")
     @CommandPermission("simpleclans.leader.description")
     @Conditions("verified|rank:name=DESCRIPTION")

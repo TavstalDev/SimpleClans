@@ -523,7 +523,6 @@ public final class StorageManager {
                         String name = res.getString("name");
                         String tag = res.getString("tag");
                         boolean leader = res.getBoolean("leader");
-                        boolean friendly_fire = res.getBoolean("friendly_fire");
                         boolean trusted = res.getBoolean("trusted");
                         int neutral_kills = res.getInt("neutral_kills");
                         int rival_kills = res.getInt("rival_kills");
@@ -548,7 +547,6 @@ public final class StorageManager {
                         cp.setFlags(flags);
                         cp.setName(name);
                         cp.setLeader(leader);
-                        cp.setFriendlyFire(friendly_fire);
                         cp.setNeutralKills(neutral_kills);
                         cp.setRivalKills(rival_kills);
                         cp.setCivilianKills(civilian_kills);
@@ -601,7 +599,6 @@ public final class StorageManager {
                         String name = res.getString("name");
                         String tag = res.getString("tag");
                         boolean leader = res.getBoolean("leader");
-                        boolean friendly_fire = res.getBoolean("friendly_fire");
                         boolean trusted = res.getBoolean("trusted");
                         int neutral_kills = res.getInt("neutral_kills");
                         int rival_kills = res.getInt("rival_kills");
@@ -626,7 +623,6 @@ public final class StorageManager {
                         cp.setFlags(flags);
                         cp.setName(name);
                         cp.setLeader(leader);
-                        cp.setFriendlyFire(friendly_fire);
                         cp.setNeutralKills(neutral_kills);
                         cp.setRivalKills(rival_kills);
                         cp.setCivilianKills(civilian_kills);
@@ -826,11 +822,11 @@ public final class StorageManager {
     public void insertClanPlayer(ClanPlayer cp) {
         plugin.getProxyManager().sendUpdate(cp);
 
-        String query = "INSERT INTO `" + getPrefixedTable("players") + "` (`uuid`, `name`, `leader`, `tag`, `friendly_fire`, `neutral_kills`, " +
+        String query = "INSERT INTO `" + getPrefixedTable("players") + "` (`uuid`, `name`, `leader`, `tag`, `neutral_kills`, " +
                 "`rival_kills`, `civilian_kills`, `deaths`, `last_seen`, `join_date`, `packed_past_clans`, `flags`) ";
         String values = "VALUES ('" + cp.getUniqueId().toString() + "', '" + cp.getName() + "',"
                 + (cp.isLeader() ? 1 : 0) + ",'" + Helper.escapeQuotes(cp.getTag()) + "',"
-                + (cp.isFriendlyFire() ? 1 : 0) + "," + cp.getNeutralKills() + "," + cp.getRivalKills()
+                + cp.getNeutralKills() + "," + cp.getRivalKills()
                 + "," + cp.getCivilianKills() + "," + cp.getDeaths() + ",'" + cp.getLastSeen() + "',' "
                 + cp.getJoinDate() + "','" + Helper.escapeQuotes(cp.getPackedPastClans()) + "','"
                 + Helper.escapeQuotes(cp.getFlags()) + "');";
@@ -871,7 +867,7 @@ public final class StorageManager {
     }
 
     private PreparedStatement prepareUpdateClanPlayerStatement(Connection connection) throws SQLException {
-        String sql = "UPDATE `" + getPrefixedTable("players") + "` SET locale = ?, resign_times = ?, leader = ?, tag = ?, friendly_fire = ?," +
+        String sql = "UPDATE `" + getPrefixedTable("players") + "` SET locale = ?, resign_times = ?, leader = ?, tag = ?," +
                 " neutral_kills = ?, ally_kills = ?, rival_kills = ?, civilian_kills = ?, deaths = ?, last_seen = ?," +
                 " packed_past_clans = ?, trusted = ?, flags = ?, `name` = ? WHERE `uuid` = ?;";
         return connection.prepareStatement(sql);
@@ -882,7 +878,6 @@ public final class StorageManager {
         statement.setString(2, Helper.resignTimesToJson(cp.getResignTimes()));
         statement.setInt(3, cp.isLeader() ? 1 : 0);
         statement.setString(4, cp.getTag());
-        statement.setInt(5, cp.isFriendlyFire() ? 1 : 0);
         statement.setInt(6, cp.getNeutralKills());
         statement.setInt(7, cp.getAllyKills());
         statement.setInt(8, cp.getRivalKills());

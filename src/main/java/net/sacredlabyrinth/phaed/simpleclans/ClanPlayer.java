@@ -369,25 +369,6 @@ public class ClanPlayer implements Serializable, Comparable<ClanPlayer> {
     }
 
     /**
-     * Whether this player is allowing friendly fire
-     *
-     * @return the friendlyFire
-     */
-    @Placeholder("is_friendlyfire_on")
-    public boolean isFriendlyFire() {
-        return friendlyFire;
-    }
-
-    /**
-     * Sets whether this player is allowing friendly fire (does not update clanplayer to db)
-     *
-     * @param friendlyFire the friendlyFire to set
-     */
-    public void setFriendlyFire(boolean friendlyFire) {
-        this.friendlyFire = friendlyFire;
-    }
-
-    /**
      * (used internally)
      *
      * @return the vote
