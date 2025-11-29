@@ -878,17 +878,17 @@ public final class StorageManager {
         statement.setString(2, Helper.resignTimesToJson(cp.getResignTimes()));
         statement.setInt(3, cp.isLeader() ? 1 : 0);
         statement.setString(4, cp.getTag());
-        statement.setInt(6, cp.getNeutralKills());
-        statement.setInt(7, cp.getAllyKills());
-        statement.setInt(8, cp.getRivalKills());
-        statement.setInt(9, cp.getCivilianKills());
-        statement.setInt(10, cp.getDeaths());
-        statement.setLong(11, cp.getLastSeen());
-        statement.setString(12, cp.getPackedPastClans());
-        statement.setInt(13, cp.isTrusted() ? 1 : 0);
-        statement.setString(14, cp.getFlags());
-        statement.setString(15, cp.getName());
-        statement.setString(16, cp.getUniqueId().toString());
+        statement.setInt(5, cp.getNeutralKills());
+        statement.setInt(6, cp.getAllyKills());
+        statement.setInt(7, cp.getRivalKills());
+        statement.setInt(8, cp.getCivilianKills());
+        statement.setInt(9, cp.getDeaths());
+        statement.setLong(10, cp.getLastSeen());
+        statement.setString(11, cp.getPackedPastClans());
+        statement.setInt(12, cp.isTrusted() ? 1 : 0);
+        statement.setString(13, cp.getFlags());
+        statement.setString(14, cp.getName());
+        statement.setString(15, cp.getUniqueId().toString());
     }
 
     /**
